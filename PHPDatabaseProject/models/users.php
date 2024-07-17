@@ -2,7 +2,7 @@
 
 function list_users() {
     global $database;
-    
+
     $query = 'SELECT name, email_address, cash_balance, id FROM users';
 
     // prepare the query please
@@ -21,8 +21,7 @@ function list_users() {
 
 function insert_user($name, $email_address, $cash_balance) {
     global $database;
-    
-    
+
     $query = "INSERT INTO users (name, email_address, cash_balance) "
             . "VALUES (:name, :email_address, :cash_balance)";
 
@@ -39,7 +38,7 @@ function insert_user($name, $email_address, $cash_balance) {
 
 function update_user($name, $email_address, $cash_balance) {
     global $database;
-    
+
     $query = "update users set name = :name, cash_balance = :cash_balance "
             . " where email_address = :email_address";
 
@@ -56,7 +55,7 @@ function update_user($name, $email_address, $cash_balance) {
 
 function delete_user($email_address) {
     global $database;
-    
+
     $query = "delete from users "
             . " where email_address = :email_address";
 

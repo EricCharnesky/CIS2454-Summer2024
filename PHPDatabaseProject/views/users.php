@@ -16,14 +16,14 @@
                 <th>Cash Balance</th>
                 <th>ID</th>
             </tr>
-            <?php foreach($users as $user) : ?>
-            <tr>
-                <td><?php echo $user['name']; ?></td>
-                <td><?php echo $user['email_address']; ?></td>
-                <td><?php echo $user['cash_balance']; ?></td>
-                <td><?php echo $user['id']; ?></td>
-            </tr>
-            
+            <?php foreach ($users as $user) : ?>
+                <tr>
+                    <td><?php echo $user['name']; ?></td>
+                    <td><?php echo $user['email_address']; ?></td>
+                    <td><?php echo $user['cash_balance']; ?></td>
+                    <td><?php echo $user['id']; ?></td>
+                </tr>
+
             <?php endforeach; ?>
         </table>
         </br>

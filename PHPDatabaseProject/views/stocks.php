@@ -16,14 +16,14 @@
                 <th>Current Price</th>
                 <th>ID</th>
             </tr>
-            <?php foreach($stocks as $stock) : ?>
-            <tr>
-                <td><?php echo $stock->get_symbol(); ?></td>
-                <td><?php echo $stock->get_name(); ?></td>
-                <td><?php echo $stock->get_current_price(); ?></td>
-                <td><?php echo $stock->get_id(); ?></td>
-            </tr>
-            
+            <?php foreach ($stocks as $stock) : ?>
+                <tr>
+                    <td><?php echo $stock->get_symbol(); ?></td>
+                    <td><?php echo $stock->get_name(); ?></td>
+                    <td><?php echo $stock->get_current_price(); ?></td>
+                    <td><?php echo $stock->get_id(); ?></td>
+                </tr>
+
             <?php endforeach; ?>
         </table>
         </br>

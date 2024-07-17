@@ -1,6 +1,7 @@
 <?php
 
 try {
+    require_once 'utility/ensure_logged_in.php';
     require_once 'models/database.php';
     require_once 'models/transactions.php';
     require_once 'models/users.php';
@@ -47,22 +48,18 @@ try {
             echo $error_message = "insufficent funds to purchase stocks";
             //include('views/error.php');
         }
-
-
-        
-    } else if ($action == "update" && $user_id != "0" && $stock_id != 0 
-            && $quantity != 0 && $price != 0 && $id != 0) {
+    } else if ($action == "update" && $user_id != "0" && $stock_id != 0 && $quantity != 0 && $price != 0 && $id != 0) {
         update_transaction($user_id, $stock_id, $quantity, $price, $id);
     } else if ($action == "delete" && $id != 0) {
-        
-        
+
+
         $transactions = list_transactions();
-        
+
         $stock_id = 0;
         $user_id = 0;
         $quantity = 0;
-        foreach( $transactions as $transaction){
-            if ( $transaction['id'] == $id ){
+        foreach ($transactions as $transaction) {
+            if ($transaction['id'] == $id) {
                 $quantity = $transaction['quantity'];
                 $stock_id = $transaction['stock_id'];
                 $user_id = $transaction['user_id'];
@@ -76,7 +73,7 @@ try {
                 $stock_price = $stock['current_price'];
             }
         }
-        
+
         $users = list_users();
         $user_name = "";
         $user_email_address = "";
@@ -90,12 +87,12 @@ try {
         }
 
         $total_sale = $stock_price * $quantity;
-        
+
         $new_balance = $users_cash_balance + $total_sale;
         update_user($user_name, $user_email_address, $new_balance);
-        
+
         delete_transaction($id);
-        
+
         header("Location: transactions.php");
     } else if ($action != "") {
         $error_message = "Missing stock_id, user_id, or quantity";

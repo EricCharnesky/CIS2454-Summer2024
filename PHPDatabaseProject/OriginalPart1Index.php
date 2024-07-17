@@ -15,12 +15,11 @@ try {
     $name = htmlspecialchars(filter_input(INPUT_POST, "name"));
     $current_price = filter_input(INPUT_POST, "current_price", FILTER_VALIDATE_FLOAT);
 
-    if ( $action == "insert" && $symbol != "" && $name != "" && $current_price != 0){
+    if ($action == "insert" && $symbol != "" && $name != "" && $current_price != 0) {
         // DANGER DANGER DANGER - SQL Injection risk
         // Don't ever just plug values into a query!
         //$query = "INSERT INTO stocks (symbol, name, current_price) "
         //        . "VALUES ($symbol, $name, $current_price)";
-
         // instead, use substitutions
         $query = "INSERT INTO stocks (symbol, name, current_price) "
                 . "VALUES (:symbol, :name, :current_price)";
@@ -34,7 +33,7 @@ try {
         $statement->execute();
 
         $statement->closeCursor();
-    } else if ($action == "update" && $symbol != "" && $name != "" && $current_price != 0){
+    } else if ($action == "update" && $symbol != "" && $name != "" && $current_price != 0) {
         $query = "update stocks set name = :name, current_price = :current_price "
                 . " where symbol = :symbol";
 
@@ -47,8 +46,7 @@ try {
         $statement->execute();
 
         $statement->closeCursor();
-
-    }else if ($action == "delete" && $symbol != "" ){
+    } else if ($action == "delete" && $symbol != "") {
         $query = "delete from stocks "
                 . " where symbol = :symbol";
 
@@ -59,9 +57,7 @@ try {
         $statement->execute();
 
         $statement->closeCursor();
-
-    } 
-    else if ( $action != "" ){
+    } else if ($action != "") {
         echo "<p>Missing symbol, name, or current price</p>";
     }
 
@@ -79,13 +75,10 @@ try {
     $stocks = $statement->fetchAll();
 
     $statement->closeCursor();
-
-
-} catch ( Exception $e){
+} catch (Exception $e) {
     $error_message = $e->getMessage();
     echo "<p>Error message: $error_message </p>";
 }
-
 ?>
 
 
@@ -104,13 +97,13 @@ try {
                 <th>Current Price</th>
                 <th>ID</th>
             </tr>
-            <?php foreach($stocks as $stock) : ?>
-            <tr>
-                <td><?php echo $stock['symbol']; ?></td>
-                <td><?php echo $stock['name']; ?></td>
-                <td><?php echo $stock['current_price']; ?></td>
-                <td><?php echo $stock['id']; ?></td>
-            </tr>
+            <?php foreach ($stocks as $stock) : ?>
+                <tr>
+                    <td><?php echo $stock['symbol']; ?></td>
+                    <td><?php echo $stock['name']; ?></td>
+                    <td><?php echo $stock['current_price']; ?></td>
+                    <td><?php echo $stock['id']; ?></td>
+                </tr>
 
             <?php endforeach; ?>
         </table>

@@ -18,16 +18,16 @@
                 <th>Timestamp</th>
                 <th>ID</th>
             </tr>
-            <?php foreach($transactions as $transaction) : ?>
-            <tr>
-                <td><?php echo $transaction['user_id']; ?></td>
-                <td><?php echo $transaction['stock_id']; ?></td>
-                <td><?php echo $transaction['quantity']; ?></td>
-                <td><?php echo $transaction['price']; ?></td>
-                <td><?php echo $transaction['timestamp']; ?></td>
-                <td><?php echo $transaction['id']; ?></td>
-            </tr>
-            
+            <?php foreach ($transactions as $transaction) : ?>
+                <tr>
+                    <td><?php echo $transaction['user_id']; ?></td>
+                    <td><?php echo $transaction['stock_id']; ?></td>
+                    <td><?php echo $transaction['quantity']; ?></td>
+                    <td><?php echo $transaction['price']; ?></td>
+                    <td><?php echo $transaction['timestamp']; ?></td>
+                    <td><?php echo $transaction['id']; ?></td>
+                </tr>
+
             <?php endforeach; ?>
         </table>
         </br>
